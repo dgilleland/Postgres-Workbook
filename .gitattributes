@@ -1,0 +1,11 @@
+# Normalize line endings in repo; checkout uses platform defaults
+* text=auto
+
+# Force LF for files that are commonly consumed in containers / CI
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+
+# PowerShell should remain CRLF friendly on Windows
+*.ps1 text eol=crlf
