@@ -1,0 +1,26 @@
+# --- Environment files (commit .env.example, not .env) ---
+.env
+.env.*
+!.env.example
+
+# --- Editor/OS junk ---
+.DS_Store
+Thumbs.db
+
+# VS Code (keep workspace settings if you want, but ignore per-user state)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# --- Logs / temp ---
+*.log
+*.tmp
+
+# --- Local Postgres artifacts (if you ever bind-mount data dirs) ---
+pgdata/
+postgres-data/
+data/
+
+# --- Docker compose overrides (optional local-only files) ---
+compose.override.yml
+docker-compose.override.yml
