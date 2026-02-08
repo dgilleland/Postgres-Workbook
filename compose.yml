@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: pg-lab
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PGUSER:-lab}
+      POSTGRES_PASSWORD: ${PGPASSWORD:-labpass}
+      POSTGRES_DB: ${PGDATABASE:-labdb}
+    ports:
+      - "${PGPORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgreslq/data
+      # Optional: run one-time init scripts on FIRST database creation
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata:
